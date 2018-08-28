@@ -58,7 +58,7 @@ var operator_2_select;
 //var operator_3_select;
 var calculated;
 var score;
-
+document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localStorage.score+" punten";
 //function playgame() {
 function setnumbers() {
 	a = Math.floor(Math.random() * 10);
@@ -103,9 +103,9 @@ function tryFunction() {
             localStorage.score = Number(localStorage.score)+1;
         	} 
         	else {
-            localStorage.score = 1;
+            localStorage.score = localStorage.score;
         	}
-        document.getElementById("calculated_result").innerHTML = calculated + " bingo!! your score = " + localStorage.score;
+        document.getElementById("score_permanent").innerHTML = calculated + " bingo, je hebt nu "+ localStorage.score +" punten!!";
     	} else {
         document.getElementById("calculated_result").innerHTML = "Sorry, your browser does not support web storage...";
     	}
@@ -117,7 +117,8 @@ function tryFunction() {
 function next() {
 	location.reload()
 }
-document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localStorage.score+" punten";
+//var localstored_updated = parseInt(localStorage.score);
+//document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localstored_updated+" punten";
 </script>
 </body>
 </html>
