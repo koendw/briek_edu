@@ -43,6 +43,9 @@
 	<button id="play_again" onclick="next()">Next!</button>
 	<div id="calculated_result"></div>
 	<div id="score_permanent"></div>
+	<div id="paw_img_1" style="display:none">
+		<img src="https://vignette.wikia.nocookie.net/paw-patrol/images/1/13/Paw_patrol_mission_paw_giveaway.png/revision/latest?cb=20170618125416">
+	</div>
 <script>
 var a;
 var b;
@@ -106,6 +109,7 @@ function tryFunction() {
             localStorage.score = localStorage.score;
         	}
         document.getElementById("score_permanent").innerHTML = calculated + " bingo, je hebt nu "+ localStorage.score +" punten!!";
+        document.getElementById("paw_img_1").style.display="block";
     	} else {
         document.getElementById("calculated_result").innerHTML = "Sorry, your browser does not support web storage...";
     	}
