@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<head>
+	<title>go figure Briek!</title>
+	<style>
+	table, th, td, tr { border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td id="a"></td>
+			<td><select id="opselect_1">
+					<option>+</option>
+					<option>-</option>
+					<!--<option>*</option>
+					<option>/</option>-->
+				</select>
+			</td>
+			<td id="b"></td>
+			<td><select id="opselect_2">
+					<option>+</option>
+					<option>-</option>
+					<!--<option>*</option>
+					<option>/</option>-->
+				</select>
+			</td>
+			<td id="c"></td>
+			<!--<td><select id="opselect_3">
+					<option>+</option>
+					<option>-</option>
+					<option>*</option>
+					<option>/</option>
+				</select>
+			</td>-->
+			<td id="d"></td>
+			<td>=</td>
+			<td id="result"></td>
+		</tr>
+	</table>
+	<button id="try" onclick="tryFunction()">Try!</button>
+	<button id="play_again" onclick="next()">Next!</button>
+	<div id="calculated_result"></div>
+	<div id="score_permanent"></div>
+<script>
+var a;
+var b;
+var c;
+//var d;
+var operators = ["+","-"] //["+","-","*","/"];
+var operator_1;
+var operator_2;
+//var operator_3;
+var result;
+var operator_1_select;
+var operator_2_select;
+//var operator_3_select;
+var calculated;
+var score;
+
+//function playgame() {
+function setnumbers() {
+	a = Math.floor(Math.random() * 10);
+	b = Math.floor(Math.random() * 10);
+	c = Math.floor(Math.random() * 10);
+	//d = Math.floor(Math.random() * 10);
+document.getElementById("a").innerHTML=a;
+document.getElementById("b").innerHTML=b;
+document.getElementById("c").innerHTML=c;
+//document.getElementById("d").innerHTML=d;
+}
+setnumbers();
+
+console.log(a,b) //(a,b,c,d);
+function setoperators() {
+	operator_1 = operators[Math.floor(Math.random() * operators.length)];
+	operator_2 = operators[Math.floor(Math.random() * operators.length)];
+	//operator_3 = operators[Math.floor(Math.random() * operators.length)];
+}
+setoperators();
+console.log(operator_1) //(operator_1,operator_2,operator_3);
+function setresult() {
+	result = eval(a + operator_1 + b + operator_2 + c) //(a + operator_1 + b + operator_2 + c + operator_3 + d);
+	//if (result % 1 == 0) { result = result }
+	//else { setnumbers()}
+	document.getElementById("result").innerHTML=result;
+}
+setresult();
+console.log(result);
+window.onload = function () {
+  var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
+  console.log('Page load time is '+ loadTime +' milliseconds');
+}
+function tryFunction() {
+	operator_1_select = document.getElementById("opselect_1").value;
+	operator_2_select = document.getElementById("opselect_2").value;
+	//operator_3_select = document.getElementById("opselect_3").value;
+ 	calculated = eval(a + operator_1_select + b + operator_2_select + c) //(a + operator_1_select + b + operator_2_select + c + operator_3_select + d);
+ 	if (calculated == result) {
+ 		if(typeof(Storage) !== "undefined") {
+        	if (localStorage.score) {
+            localStorage.score = Number(localStorage.score)+1;
+        	} 
+        	else {
+            localStorage.score = 1;
+        	}
+        document.getElementById("calculated_result").innerHTML = calculated + " bingo!! your score = " + localStorage.score;
+    	} else {
+        document.getElementById("calculated_result").innerHTML = "Sorry, your browser does not support web storage...";
+    	}
+ 	}
+ 	else {
+ 	document.getElementById("calculated_result").innerHTML = calculated + " is no good, try again";
+ 	}
+}
+function next() {
+	location.reload()
+}
+document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localStorage.score+" punten";
+</script>
+</body>
+</html>
