@@ -3,15 +3,48 @@
 <head>
 	<title>go figure Briek!</title>
 	<style>
-	table, th, td, tr { border: 1px solid black;
-	}
+	/*table, th, td, tr { border: 1px solid black;
+	}*/
+
+	
+	#table_1 { 
+		position: fixed;
+		width: 25%;
+    	right: 0;
+    	left: 0;
+    	margin-right: auto;
+    	margin-left: auto; 
+    	top: 20px;
+    }
+    .solve_this {
+    	position: fixed;	
+		width: 25%;
+    	right: 0;
+    	left: 0;
+    	margin-right: auto;
+    	margin-left: auto; 
+    	top: 80px;
+    }
+    #paw_img_1 {
+    	position: fixed;
+    	right: 0;
+    	left: 0;
+    	margin-right: auto;
+    	margin-left: auto; 
+    	top: 180px;
+    }
+    td {
+    	height: 60px;
+    	font-size: 40px;
+    }
 	</style>
 </head>
 <body>
-	<table>
+	<div class="solve_this">
+	<table id="table_1">
 		<tr>
 			<td id="a"></td>
-			<td><select id="opselect_1">
+			<td><select id="opselect_1" style="height: 40px" style="font-size: 30px">
 					<option>+</option>
 					<option>-</option>
 					<!--<option>*</option>
@@ -19,8 +52,8 @@
 				</select>
 			</td>
 			<td id="b"></td>
-			<td><select id="opselect_2">
-					<option>+</option>
+			<td><select id="opselect_2" style="height: 40px" style="font-size: 30px">
+					<option style="font-size: 30px">+</option>
 					<option>-</option>
 					<!--<option>*</option>
 					<option>/</option>-->
@@ -41,10 +74,15 @@
 	</table>
 	<button id="try" onclick="tryFunction()">Try!</button>
 	<button id="play_again" onclick="next()">Next!</button>
+	<button id="clear_score" onclick="clear()">Reset</button>
 	<div id="calculated_result"></div>
 	<div id="score_permanent"></div>
+</div>
 	<div id="paw_img_1" style="display:none">
 		<img src="https://vignette.wikia.nocookie.net/paw-patrol/images/1/13/Paw_patrol_mission_paw_giveaway.png/revision/latest?cb=20170618125416">
+	</div>
+	<div id="paw_img_2" style="display:none">
+		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe0UpEqkN5iEWLH7MPQy9yNk7I544fuTLjr5dhqSPfC9SttsgJ">
 	</div>
 <script>
 var a;
@@ -118,8 +156,14 @@ function tryFunction() {
  	document.getElementById("calculated_result").innerHTML = calculated + " is no good, try again";
  	}
 }
+if (localStorage.score == "10") {
+	document.getElementById("paw_img_2").style.display="block";
+}
 function next() {
 	location.reload()
+}
+function clear() {
+	localStorage.score = localStorage.score - localStorage.score;
 }
 //var localstored_updated = parseInt(localStorage.score);
 //document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localstored_updated+" punten";
