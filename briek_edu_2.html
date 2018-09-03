@@ -100,7 +100,7 @@ var operator_1_select;
 var operator_2_select;
 //var operator_3_select;
 var calculated;
-localStorage.score = "0";
+//localStorage.score = "0";
 document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localStorage.score+" punten";
 //function playgame() {
 function setnumbers() {
@@ -169,35 +169,14 @@ if (localStorage.score == "2") {
 
 console.log(localStorage.score);
 function next() {
-	//location.reload();
-	//console.log("test");
-	function setnumbers() {
-	a = Math.floor(Math.random() * 10);
-	b = Math.floor(Math.random() * 10);
-	c = Math.floor(Math.random() * 10);
-	//d = Math.floor(Math.random() * 10);
-document.getElementById("a").innerHTML=a;
-document.getElementById("b").innerHTML=b;
-document.getElementById("c").innerHTML=c;
-//document.getElementById("d").innerHTML=d;
-}
-setnumbers();
-
-console.log(a,b,c) //(a,b,c,d);
-function setoperators() {
-	operator_1 = operators[Math.floor(Math.random() * operators.length)];
-	operator_2 = operators[Math.floor(Math.random() * operators.length)];
-	//operator_3 = operators[Math.floor(Math.random() * operators.length)];
-}
-setoperators();
-console.log(operator_1, operator_2) //(operator_1,operator_2,operator_3);
-function setresult() {
-	result = eval(a + operator_1 + b + operator_2 + c) //(a + operator_1 + b + operator_2 + c + operator_3 + d);
-	//if (result % 1 == 0) { result = result }
-	//else { setnumbers()}
-	document.getElementById("result").innerHTML=result;
-}
-setresult();
+	location.reload();
+	console.log("test");
+	
+//setnumbers();
+//console.log(a,b,c) //(a,b,c,d);
+//setoperators();
+//console.log(operator_1, operator_2) //(operator_1,operator_2,operator_3);
+//setresult();
 }
 
         	
