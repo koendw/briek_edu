@@ -134,7 +134,7 @@ Number(localStorage.score);
 window.onload = function () {
   var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
   console.log('Page load time is '+ loadTime +' milliseconds');
-  localStorage.score = Number(localStorage.score);
+  localStorage.score = Number(localStorage.score)+0;
 }
 function tryFunction() {
 	operator_1_select = document.getElementById("opselect_1").value;
