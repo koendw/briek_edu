@@ -100,6 +100,7 @@ var operator_1_select;
 var operator_2_select;
 //var operator_3_select;
 var calculated;
+localStorage.score = "0";
 document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localStorage.score+" punten";
 //function playgame() {
 function setnumbers() {
@@ -133,7 +134,6 @@ console.log(result);
 window.onload = function () {
   var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
   console.log('Page load time is '+ loadTime +' milliseconds');
-  localStorage.score = "0";
 }
 function tryFunction() {
 	operator_1_select = document.getElementById("opselect_1").value;
