@@ -129,12 +129,11 @@ function setresult() {
 	document.getElementById("result").innerHTML=result;
 }
 setresult();
-console.log(result);
-Number(localStorage.score);  
+console.log(result);  
 window.onload = function () {
   var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
   console.log('Page load time is '+ loadTime +' milliseconds');
-  localStorage.score = 0;
+  localStorage.score = "0";
 }
 function tryFunction() {
 	operator_1_select = document.getElementById("opselect_1").value;
