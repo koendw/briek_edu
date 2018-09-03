@@ -45,7 +45,8 @@
 		<tr>
 			<td id="a"></td>
 			<td><select id="opselect_1" style="height: 40px" style="font-size: 30px">
-					<option>+</option>
+					<option>kies + of -</option>
+					<option style="text-align:center;">+</option>
 					<option>-</option>
 					<!--<option>*</option>
 					<option>/</option>-->
@@ -53,6 +54,7 @@
 			</td>
 			<td id="b"></td>
 			<td><select id="opselect_2" style="height: 40px" style="font-size: 30px">
+					<option>kies + of -</option>
 					<option style="font-size: 30px">+</option>
 					<option>-</option>
 					<!--<option>*</option>
@@ -74,7 +76,7 @@
 	</table>
 	<button id="try" onclick="tryFunction()">Try!</button>
 	<button id="play_again" onclick="next()">Next!</button>
-	<button id="clear_score" onclick="clear()">Reset</button>
+	<button id="clear_score" onclick="clear_score()">Reset</button>
 	<div id="calculated_result"></div>
 	<div id="score_permanent"></div>
 </div>
@@ -98,7 +100,6 @@ var operator_1_select;
 var operator_2_select;
 //var operator_3_select;
 var calculated;
-var score;
 document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localStorage.score+" punten";
 //function playgame() {
 function setnumbers() {
@@ -113,14 +114,14 @@ document.getElementById("c").innerHTML=c;
 }
 setnumbers();
 
-console.log(a,b) //(a,b,c,d);
+console.log(a,b,c) //(a,b,c,d);
 function setoperators() {
 	operator_1 = operators[Math.floor(Math.random() * operators.length)];
 	operator_2 = operators[Math.floor(Math.random() * operators.length)];
 	//operator_3 = operators[Math.floor(Math.random() * operators.length)];
 }
 setoperators();
-console.log(operator_1) //(operator_1,operator_2,operator_3);
+console.log(operator_1, operator_2) //(operator_1,operator_2,operator_3);
 function setresult() {
 	result = eval(a + operator_1 + b + operator_2 + c) //(a + operator_1 + b + operator_2 + c + operator_3 + d);
 	//if (result % 1 == 0) { result = result }
@@ -156,15 +157,22 @@ function tryFunction() {
  	document.getElementById("calculated_result").innerHTML = calculated + " is no good, try again";
  	}
 }
-if (localStorage.score == "10") {
+function clear_score() {
+localStorage.score= 0;
+location.reload();
+ console.log("test");
+}
+if (localStorage.score == "2") {
 	document.getElementById("paw_img_2").style.display="block";
 }
+
+console.log(localStorage.score);
 function next() {
-	location.reload()
+	location.reload();
+	//console.log("test");
 }
-function clear() {
-	localStorage.score = localStorage.score - localStorage.score;
-}
+
+        	
 //var localstored_updated = parseInt(localStorage.score);
 //document.getElementById("score_permanent").innerHTML= "Briek, je hebt al "+localstored_updated+" punten";
 </script>
