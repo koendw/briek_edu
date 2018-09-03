@@ -130,6 +130,7 @@ function setresult() {
 }
 setresult();
 console.log(result);
+Number(localStorage.score);  
 window.onload = function () {
   var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
   console.log('Page load time is '+ loadTime +' milliseconds');
