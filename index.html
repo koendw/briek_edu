@@ -49,6 +49,26 @@
   height: 100px;
   bottom: 0;
 }
+
+.swap_chart {
+  z-index: 9999;
+  transition: opacity .5s linear;
+  cursor: pointer;
+  background-image: url("structure_chart_2_for_website.png");
+  background-size: contain;
+}
+.swap_chart_1 {
+  z-index: 9999;
+  transition: opacity .5s linear;
+  cursor: pointer;
+}
+
+/* When we hover the figure element, the block with .swap-on-hover, we want to use > so the front-image is going to have opacity of 0, which means it will be hidden, to the back image will show */
+.swap_chart:hover > .swap_chart_1 {
+  opacity: 0;
+}
+
+
     </style>
 </head>
 
@@ -82,7 +102,7 @@
                             <div class="col-md-10 col-sm-8">
                                 <h6 class="uppercase mb16"><a class="inner-link" href="#legal_ref"> Legal Entity Management | Finance | Tax <!--| Compliance--></a><br></h6>
                             </div>
-                            <div class="col-md-10 col-sm-8">
+                            <div class="col-md-10 col-sm-12">
                                 <h6 class="uppercase mb16"><a class="inner-link" href="#for_whom"> Real Estate | Private Equity | Multinational Groups| <br>Professional Service Firms</a><br></h6>
                             </div>
                             </div>
@@ -160,7 +180,8 @@
                                 <i class="icon mb32 fa fa-sitemap" style="color: #00aed3"></i>
                                 <!--<h4>put c<br></h4>-->
                             </div>
-                            <div id="boxshadow"><img src ="structure_chart_1_for_website.png"></div>
+                            
+                            <div id="boxshadow"><figure class="swap_chart"><img class="swap_chart_1" src ="structure_chart_1_for_website.png" ></figure></div>                             
                         <a id="legal_ref" class="in-page-link"></a>
                         </div>
                     </div>
@@ -304,7 +325,7 @@
                 </div>
             </div>
         </section>
-				<!--<a id="approach" class="in-page-link"></a>-->
+                <!--<a id="approach" class="in-page-link"></a>-->
         <section>
             <div class="container">
                 <!--<div class="row mb64 mb-xs-24">-->
@@ -342,7 +363,7 @@
                 </div>
             </div>
         </section>
-				<a id="cross-domain-modeling" class="in-page-link"></a>
+                <a id="cross-domain-modeling" class="in-page-link"></a>
         <section class="image-square left bg-dark" style="background-color: #505052">
             <div class="col-md-6 image">
                 <div class="background-image-holder">
@@ -375,7 +396,7 @@
                         <p>
                             info@allcrux.com
                             <br>+352 691 138 651
-                            <br>+32 468 29 94 87‬			
+                            <br>+32 468 29 94 87‬           
                         </p>
                     </div>
                 </div>
