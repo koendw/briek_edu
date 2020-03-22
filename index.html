@@ -3,12 +3,12 @@
 	<title>onredelijk_redelijk</title>
 </head>
 <body>
-<h1>Didier B dedicated cijfervertaalsoftware</h1>
+<h1>Didier B dedicated cijfervertaalsoftware</h1>	
 
 <p>In antwoord op verzoek Mr. Bogaert, bij deze een kleine tool die helpt met omzetten Duitse en Engelse (sic) cijfers, naar Nederlandse, Romeinse en Chinese cijfers!
 
 <h1>input getal (Duitse/Engelse (sic) cijfers, in duizenden, dus kleiner dan 10.000)</h1>
-<input type="text" id="input_nr">
+<input type="number" id="input_nr" class="edit-items" max='9999'/>
 <button type="submit" onclick="calc_roman()">submit</button>
 <br>
 <h1>Nederlands:</h1>
@@ -20,6 +20,15 @@
 <div id="getal_te_groot" style="display:none">Didier toch! Het gekozen getal is te groot, reduceren tot duizenden.</div>
 
 <script>
+
+document.getElementsByClassName('edit-items')[0].oninput = function () {
+        var max = parseInt(this.max);
+
+        if (parseInt(this.value) > max) {
+            alert("Getal moet kleiner zijn dan 10.000, Didier!");
+            this.value = max;
+        }
+    }
 function calc_roman() {
 var input_raw = document.getElementById("input_nr").value;
 var input_raw_int = parseInt(input_raw);
