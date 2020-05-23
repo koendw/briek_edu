@@ -1,149 +1,183 @@
-<!DOCTYPE html>
+<html>
 <head>
-	<title>onredelijk_redelijk</title>
+<title>naming_conventions_allcrux</title>
 </head>
 <body>
-<h1>cijfervertaalsoftware voor de advocatuur</h1>	
-<!--
-<p>In antwoord op verzoek meester Huppeldepup, bij deze een kleine tool die helpt met omzetten Duitse en Engelse (sic) cijfers, naar Nederlandse, Romeinse en Chinese cijfers!
--->
-<h3>input getal</h3>
-	<ul>
-		<li>Duitse/Engelse (sic) cijfers ingeven, getal kleiner dan 10.000, desnoods afronden.</li>
-		<li>Boekhoudcijfers in te geven in duizenden.</li>
-	</ul>
-<input type="number" id="input_nr" class="edit-items" max='9999'/>
-<button type="submit" onclick="calc_roman()">submit</button>
+
+
+<h3>Default vs current vs previous</h3>
+<select multiple id="default_current_previous" name="default_current_previous" style="width: 300px"><br>
+      <option value="">please select...</option>
+      <option value="default">default</option>
+      <option value="current">current</option>
+      <option value="previous">previous</option>
+  </select>
 <br>
-<h3>Nederlands:</h3>
-<div id="ned_cijfers"></div>
-<h3>Romeinse cijfers:</h3>
-<div id="the_roman"></div>
-<h3>Chinees:</h3>
-<div id="chinees">
-<div id="getal_te_groot" style="display:none">Didier toch! Het gekozen getal is te groot, reduceren tot duizenden.</div>
+
+<h3>Select number, amount or percentage</h3> 
+  <select id="number_amount_percentage" name="umber_amount_percentage" style="width: 300px" onchange="appearing_if_amount()"><br>
+      <option value="">please select...</option>
+      <option value="nr">number</option>
+      <option value="amnt">amount</option>
+      <option value="perc">percentage</option>
+  </select>
+<br>
+<script>
+function appearing_if_amount() {
+  var y = document.getElementById("number_amount_percentage").value;
+  if (y == "amnt") {
+  document.getElementById("appearing_if_amount").style.display = "block";
+  }
+  else {
+document.getElementById("appearing_if_amount").style.display = "none";
+  }
+}
+</script>
+<div id="appearing_if_amount" style="display:none">
+<h3>Select agio vs nominal vs MTM</h3>
+    <select id="agio_nominal_mtm" name="agio_nominal_mtm" style="width: 300px"><br>
+      <option value="">please select...</option>
+      <option value="agio">agio</option>
+      <option value="nominal">nominal</option>
+      <option value="mtm">mtm</option>
+  </select>
+</div>
+<br>
+<h3>check if pertaining to a deal vehicle</h3>
+<label for="per_deal_node">per_deal_node</label>
+  <input type="checkbox" id="per_deal_node">
+
+<h3>select whether defined per issuer / holder or whether in holding or transaction</h3>
+<p>(note: if in holding or transaction, issuer, holder and instrument are already known)</p>
+<select multiple id="per_issuer-holder_or_holding_or_transaction" style="width: 300px" onchange="per_instr_type_appearing()"><br>
+      <option value="">please select...</option>
+      <option value="per_issuer">per_issuer</option>
+      <option value="per_holder">per_holder</option>
+      <option value="in_holding">in_holding</option>
+      <option value="in_transaction">in_transaction</option>
+  </select>
+
 
 <script>
-
-document.getElementsByClassName('edit-items')[0].oninput = function () {
-        var max = parseInt(this.max);
-
-        if (parseInt(this.value) > max) {
-            alert("Getal moet kleiner zijn dan 10.000, Didier!");
-            this.value = max;
-        }
-    }
-function calc_roman() {
-var input_raw = document.getElementById("input_nr").value;
-var input_raw_int = parseInt(input_raw);
-var additional_zeros = "0";
-var input_nr;
-var romans = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
-var split_m;
-var split_c;
-var split_x;
-var split_i;
-var chinese = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "百", "千"];
-/* "百", "千" */
-console.log(input_raw_int);
-
-if (input_raw_int > 9999) {
-	document.getElementById("getal_te_groot").style.display = "block";
-} else 
-
-{
-/* veur de vlamingen/ollanders */
-document.getElementById("ned_cijfers").innerHTML = input_raw;
-/* dees es veur de Romein */
-input_nr = additional_zeros.repeat(4-input_raw.split('').length)+input_raw;
-
-var input_split = input_nr.split('');
-console.log(input_split);
-	split_m = romans[0].repeat(input_split[0]);	
-	if (input_split[1] == 9) {
-		split_c = romans[1];
-	}	else if (input_split[1] < 9 & input_split[1] >= 5) {
-		split_c = romans[2]+romans[4].repeat(input_split[1]-5);
-	}   else if (input_split[1] == 4) {
-		split_c = romans[3];
-	} 	else if (input_split[1] < 4 & input_split[1] >= 1) {
-		split_c = romans[4].repeat(input_split[1]);
-	}	else {
-		split_c = "";
-	}
-	if (input_split[2] == 9) {
-		split_x = romans[5];
-	} 	else if (input_split[2] < 9 & input_split[2] >= 5) {
-		split_x = romans[6]+romans[8].repeat(input_split[2]-5);
-	} 	else if (input_split[2] == 4) {
-		split_x = romans[7];
-	}	else if (input_split[2] < 4 & input_split[2] >= 1) {
-		split_x = romans[8].repeat(input_split[2]);
-	}	else {
-		split_x = "";
-	}
-	if (input_split[3] == 9) {
-		split_i = romans[9];
-	} 	else if (input_split[3] < 9 & input_split[3] >=	 5) {
-		split_i = romans[10]+romans[12].repeat(input_split[3]-5);
-	} 	else if (input_split[3] == 4) {
-		split_i = romans[11];
-	}	else if (input_split[3] < 4 & input_split[3] >= 1) {
-		split_i = romans[12].repeat(input_split[3]);
-	}	else {
-		split_i = "";
-	}
-	console.log(split_m+split_c+split_x+split_i);
-document.getElementById("the_roman").innerHTML = (split_m+split_c+split_x+split_i);
-
-/* hieronder de chinees */
-var raw_split = input_raw.split('');
-var raw_split_count = raw_split.length;
-console.log(raw_split);
-console.log(raw_split_count); 
-var c;
-var intchinees;
-var ck; /* chinese thousands */
-var ch; /* chinese hundreds */
-var ct; /* chinese tens */
-var cu; /* cinese units */
-
-
-if (raw_split_count == 4) {
-	ck = chinese[raw_split[0]] + chinese[12];
-	ch = chinese[raw_split[1]] + chinese[11];
-	ct = chinese[raw_split[2]] + chinese[10];
-	cu = chinese[raw_split[3]];
-	document.getElementById("chinees").innerHTML = ck+ch+ct+cu;
-} else if (raw_split_count == 3) {
-	/*ck = "";*/
-	ch = chinese[raw_split[0]] + chinese[11];
-	ct = chinese[raw_split[1]] + chinese[10];
-	cu = chinese[raw_split[2]];
-	document.getElementById("chinees").innerHTML = ch+ct+cu;
-} else if (raw_split_count == 2) {
-	/*ck = "";
-	ch = "";*/
-	ct = chinese[raw_split[0]] + chinese[10];
-	cu = chinese[raw_split[1]];
-	document.getElementById("chinees").innerHTML = ct+cu;
-} else if (raw_split_count == 1) {
-	/*ck = "";
-	ch = "";
-	ct = "";*/
-	cu = chinese[raw_split[0]];
-	document.getElementById("chinees").innerHTML = cu;
+function per_instr_type_appearing() {
+  var x = document.getElementById("per_issuer-holder_or_holding_or_transaction").value;
+  if (x != "in_holding" && x != "in_transaction") {
+  document.getElementById("only_if_per_issuer_or_per_holder").style.display = "block";
+  }
+  else {
+document.getElementById("only_if_per_issuer_or_per_holder").style.display = "none";
+  }
 }
-
-}
-
-}
-
-window.onload = function () {
- var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
-  console.log('Page load time is '+ loadTime +' milliseconds');
-}
-
 </script>
+
+<div id="only_if_per_issuer_or_per_holder" style="display:none">
+<h3>select if per instrument or per instrument_type</h3>
+<p>this only applies if not tied to a holding or transaction</p>
+  <select id="in_instr_or_instr_type" style="width: 300px"><br>
+      <option value="">please select...</option>
+      <option value="in_instr">in_instrument</option>
+      <option value="in_single_instr">in_single_instrument</option>
+      <option value="in_instr_type">in_instrument_type</option>
+  </select>
+</div>
+<script>
+/*function per_instr_type_appearing() {
+  var x = document.getElementById("per_issuer-holder_or_holding_or_transaction").value;
+  if (x != "in_holding" && x != "in_transaction") {
+  document.getElementById("only_if_per_issuer_or_per_holder").style.display = "block";
+  }
+  else {
+document.getElementById("only_if_per_issuer_or_per_holder").style.display = "none";
+  }
+}*/
+</script>
+<br>
+<h3>check if pertaining to a deal instrument or instrument type</h3>
+<p>(this is to be selected if the item corresponds to a deal vehicle and within that deal there is also an exclusive link to the deal in relation to the instrument or instrument type)</p>
+<label for="per_deal_instr_(type)">per_deal_instr_(type)</label>
+  <input type="checkbox" id="per_deal_instr_(type)">
+<br>
+<h3>Free text</h3>
+<p>only to be used if further precision required</p>
+<input type="text" id="free_text_add_on">
+<br>
+<br>
+<button onclick="build_name()" style="background-color:lightgreen">submit</button>
+<br>
+<h2>name constructed</h2>
+<div id="name_constructed" style="color:green"></div>
+<br>
+<p>note: please doublecheck for double underscores.</p>
+
+
+
+
+  <script>
+function build_name() {
+  var a;
+  var b;
+  var c;
+  var checkbox_for_d = document.getElementById("per_deal_node");
+  var d;
+  var e;
+  var f;
+  var checkbox_for_g = document.getElementById("per_deal_instr_(type)");
+  var g;
+  var h;
+  var name;
+
+if (document.getElementById("default_current_previous").value != ""){
+    a = document.getElementById("default_current_previous").value;
+  } else {
+    a="";
+  }
+
+if (document.getElementById("number_amount_percentage").value != ""){
+    b = "_"+document.getElementById("number_amount_percentage").value;
+  } else {
+    b="";
+  }
+
+if (document.getElementById("agio_nominal_mtm").value != ""){
+    c = "_"+document.getElementById("agio_nominal_mtm").value;
+  } else {
+    c="";
+  }
+
+if (checkbox_for_d.checked == true){
+    d = "_"+"per_deal";
+  } else {
+    d="";
+  }
+
+if (document.getElementById("per_issuer-holder_or_holding_or_transaction").value != ""){
+    e = "_"+document.getElementById("per_issuer-holder_or_holding_or_transaction").value;
+  } else {
+    e="";
+  }
+
+ if (document.getElementById("in_instr_or_instr_type").value != ""){
+    f = "_"+document.getElementById("in_instr_or_instr_type").value;
+  } else {
+    f="";
+  } 
+
+if (checkbox_for_g.checked == true){
+    g = "_"+"per_deal_(for_instr_type)";
+  } else {
+    g="";
+  }
+
+if (document.getElementById("free_text_add_on").value != null){
+    h = "_"+document.getElementById("free_text_add_on").value;
+  } else {
+    h="";
+  } 
+
+  name = a+b+c+d+e+f+g+h;
+  document.getElementById("name_constructed").innerHTML = name;
+  }
+</script>
+
 </body>
 </html>
