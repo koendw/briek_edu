@@ -55,7 +55,7 @@ document.getElementById("appearing_if_amount").style.display = "none";
   </select>
 
 <script>
-function per_instr_type_appearing() {
+/*function per_instr_type_appearing() {
   var x = document.getElementById("per_issuer-holder_or_holding_or_transaction").value;
   if (x != "in_holding" && x != "in_transaction") {
   document.getElementById("only_if_per_issuer_or_per_holder").style.display = "block";
@@ -63,10 +63,10 @@ function per_instr_type_appearing() {
   else {
 document.getElementById("only_if_per_issuer_or_per_holder").style.display = "none";
   }
-}
+}*/
 </script>
 
-<div id="only_if_per_issuer_or_per_holder" style="display:none">
+<div id="only_if_per_issuer_or_per_holder" style="display:block">
 <h3>select if per instrument or per instrument_type</h3>
 <p>this only applies if not tied to a holding or transaction</p>
   <select id="in_instr_or_instr_type" style="width: 300px"><br>
