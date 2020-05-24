@@ -17,10 +17,11 @@
       <option value="default">default</option>
       <option value="current">current</option>
       <option value="previous">previous</option>
+      <option value="running_total">running_total</option>
   </select>
 <br>
 <script>
-function appearing_if_amount() {
+/*function appearing_if_amount() {
   var y = document.getElementById("number_amount_percentage").value;
   if (y == "amnt") {
   document.getElementById("appearing_if_amount").style.display = "block";
@@ -28,9 +29,9 @@ function appearing_if_amount() {
   else {
 document.getElementById("appearing_if_amount").style.display = "none";
   }
-}
+}*/
 </script>
-<div id="appearing_if_amount" style="display:none">
+<div id="appearing_if_amount" style="display:block">
 <h3>Select agio vs nominal vs MTM</h3>
     <select id="agio_nominal_mtm" name="agio_nominal_mtm" style="width: 300px"><br>
       <option value="">please select...</option>
@@ -46,7 +47,7 @@ document.getElementById("appearing_if_amount").style.display = "none";
 
 <h3>select whether defined per issuer / holder or whether in holding or transaction</h3>
 <p>(note: if in holding or transaction, issuer, holder and instrument are already known)</p>
-<select multiple id="per_issuer-holder_or_holding_or_transaction" style="width: 300px" onchange="per_instr_type_appearing()"><br>
+<select multiple id="per_issuer-holder_or_holding_or_transaction" size="5" style="width: 300px" style="height: 100%"onchange="per_instr_type_appearing()"><br>
       <option value="">please select...</option>
       <option value="per_issuer">per_issuer</option>
       <option value="per_holder">per_holder</option>
