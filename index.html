@@ -3,23 +3,20 @@
 <title>naming_conventions_allcrux</title>
 </head>
 <body>
-
-
-<h3>Default vs current vs previous</h3>
-<select multiple id="default_current_previous" name="default_current_previous" style="width: 300px"><br>
-      <option value="">please select...</option>
-      <option value="default">default</option>
-      <option value="current">current</option>
-      <option value="previous">previous</option>
-  </select>
-<br>
-
 <h3>Select number, amount or percentage</h3> 
-  <select id="number_amount_percentage" name="umber_amount_percentage" style="width: 300px" onchange="appearing_if_amount()"><br>
+  <select id="number_amount_percentage" style="width: 300px" onchange="appearing_if_amount()"><br>
       <option value="">please select...</option>
       <option value="nr">number</option>
       <option value="amnt">amount</option>
       <option value="perc">percentage</option>
+  </select>
+<br>
+<h3>Default vs current vs previous</h3>
+<select id="default_current_previous" style="width: 300px"><br>
+      <option value="">please select...</option>
+      <option value="default">default</option>
+      <option value="current">current</option>
+      <option value="previous">previous</option>
   </select>
 <br>
 <script>
@@ -57,7 +54,6 @@ document.getElementById("appearing_if_amount").style.display = "none";
       <option value="in_transaction">in_transaction</option>
   </select>
 
-
 <script>
 function per_instr_type_appearing() {
   var x = document.getElementById("per_issuer-holder_or_holding_or_transaction").value;
@@ -80,17 +76,6 @@ document.getElementById("only_if_per_issuer_or_per_holder").style.display = "non
       <option value="in_instr_type">in_instrument_type</option>
   </select>
 </div>
-<script>
-/*function per_instr_type_appearing() {
-  var x = document.getElementById("per_issuer-holder_or_holding_or_transaction").value;
-  if (x != "in_holding" && x != "in_transaction") {
-  document.getElementById("only_if_per_issuer_or_per_holder").style.display = "block";
-  }
-  else {
-document.getElementById("only_if_per_issuer_or_per_holder").style.display = "none";
-  }
-}*/
-</script>
 <br>
 <h3>check if pertaining to a deal instrument or instrument type</h3>
 <p>(this is to be selected if the item corresponds to a deal vehicle and within that deal there is also an exclusive link to the deal in relation to the instrument or instrument type)</p>
@@ -126,14 +111,14 @@ function build_name() {
   var h;
   var name;
 
-if (document.getElementById("default_current_previous").value != ""){
-    a = document.getElementById("default_current_previous").value;
+if (document.getElementById("number_amount_percentage").value != ""){
+    a = document.getElementById("number_amount_percentage").value;
   } else {
     a="";
   }
 
-if (document.getElementById("number_amount_percentage").value != ""){
-    b = "_"+document.getElementById("number_amount_percentage").value;
+if (document.getElementById("default_current_previous").value != ""){
+    b = "_"+document.getElementById("default_current_previous").value;
   } else {
     b="";
   }
@@ -168,7 +153,7 @@ if (checkbox_for_g.checked == true){
     g="";
   }
 
-if (document.getElementById("free_text_add_on").value != null){
+if (document.getElementById("free_text_add_on").value != ""){
     h = "_"+document.getElementById("free_text_add_on").value;
   } else {
     h="";
