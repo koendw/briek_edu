@@ -3,8 +3,40 @@
 <title>naming_conventions_allcrux</title>
 </head>
 <body>
-<h3>EDC horizon counter</h3>
-<iframe src="https://free.timeanddate.com/countdown/i7finkn8/n1246/cf12/cm0/cu4/ct0/cs0/ca0/cr0/ss0/cac000/cpc000/pcfff/tcfff/fs100/szw320/szh135/tatTime%20left%20to%20Handshake%20Deal%20Execution/tac000/tptTime%20since%20Event%20started%20in/tpc000/mac000/mpc000/iso2030-08-26T00:00:00" allowTransparency="true" frameborder="0" width="345" height="69"></iframe>
+<h3>EWS horizon counter</h3>
+<p id="ews"></p>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Aug 30, 2030 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+  var days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("ews").innerHTML = years + "yrs " + days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
 
 <h3>Select number, amount or percentage</h3> 
   <select id="number_amount_percentage" style="width: 300px" onchange="appearing_if_amount()"><br>
